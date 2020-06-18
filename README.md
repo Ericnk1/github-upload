@@ -1,1 +1,1 @@
-# github-upload
+# Pet clinic system project.
