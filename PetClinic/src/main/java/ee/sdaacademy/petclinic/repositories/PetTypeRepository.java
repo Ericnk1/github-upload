@@ -10,7 +10,7 @@ import java.util.List;
 public class PetTypeRepository {
 
     //find all PetTypes
-    public List<PetType> findAll(){
+    public static List<PetType> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<PetType> petTypes = session.createQuery("select petType from PetType petType ", PetType.class).getResultList();
         session.close();
@@ -18,7 +18,7 @@ public class PetTypeRepository {
     }
 
     //find PetType by PetType id
-    public PetType findById(Integer id){
+    public static PetType findById(Integer id){
         Session session = HibernateUtils.getSessionFactory().openSession();
         PetType petType = session.find(PetType.class, id);
         session.close();
@@ -26,7 +26,7 @@ public class PetTypeRepository {
     };
 
     //save to database
-    public void save(PetType petType){
+    public static void save(PetType petType){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(petType);
@@ -35,7 +35,7 @@ public class PetTypeRepository {
     };
 
     //delete from database
-    public void delete(PetType petType){
+    public static void delete(PetType petType){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(petType);
@@ -44,7 +44,7 @@ public class PetTypeRepository {
     };
 
     //delete from database by petType id
-    public void deleteById(PetType petTypeId){
+    public static void deleteById(PetType petTypeId){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(petTypeId);
@@ -53,7 +53,7 @@ public class PetTypeRepository {
     }
 
     //update database
-    public void update(PetType petType){
+    public static void update(PetType petType){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.update(petType);

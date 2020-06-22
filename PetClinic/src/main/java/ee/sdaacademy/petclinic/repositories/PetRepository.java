@@ -10,7 +10,7 @@ import java.util.List;
 public class PetRepository {
 
     //find all Pets
-    public List<Pet> findAll(){
+    public static List<Pet> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Pet> pet = session.createQuery("select pet " +
                 "from Pet pet ", Pet.class).getResultList();
@@ -19,16 +19,16 @@ public class PetRepository {
     }
 
     //find Pet by Pet alphabetically
-    public List <Pet> findAllAlphabetically() {
+    public static List <Pet> findAllAlphabetically() {
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Pet> pet = session.createQuery("select pet" +
-                " from Pet pet order by pet.firstName", Pet.class)
+                " from Pet pet order by Name", Pet.class)
                 .getResultList();
         return pet;
     };
 
     //find Pets by id
-    public Pet findById(Integer id){
+    public static Pet findById(Integer id){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Pet pet = session.find(Pet.class, id);
         session.close();
@@ -36,7 +36,7 @@ public class PetRepository {
     };
 
     //save to database
-    public void save(Pet pet){
+    public static void save(Pet pet){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(pet);
@@ -45,7 +45,7 @@ public class PetRepository {
     };
 
     //delete from database
-    public void delete(Pet pet){
+    public static void delete(Pet pet){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(pet);
@@ -54,7 +54,7 @@ public class PetRepository {
     };
 
     //delete from database by Pets id
-    public void deleteById(Pet petId){
+    public static void deleteById(Pet petId){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(petId);
@@ -63,7 +63,7 @@ public class PetRepository {
     };
 
     //update database
-    public void update(Pet pet){
+    public static void update(Pet pet){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(pet);

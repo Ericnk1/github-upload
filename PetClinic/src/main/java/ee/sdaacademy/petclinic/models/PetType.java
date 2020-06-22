@@ -16,7 +16,7 @@ import java.util.List;
 public class PetType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int petTypeId;
     String name;
     @OneToMany(mappedBy = "petType", fetch = FetchType.EAGER)
