@@ -3,6 +3,7 @@ package ee.sdaacademy.petclinic.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer petId;
     String name;
-    Date dateOfBirth;
+    LocalDate dateOfBirth;
     @ManyToOne
     @JoinColumn(name = "petTypeId")
     PetType petType;

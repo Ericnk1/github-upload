@@ -10,7 +10,7 @@ import java.util.List;
 public class AdminRepository {
 
     //find all admins
-    public List<Admin> findAll() {
+    public static List<Admin> findAll() {
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Admin> admins =
                 session.createQuery("select admin from Admin admin", Admin.class)
@@ -20,7 +20,7 @@ public class AdminRepository {
     }
 
     //find vet by admin id
-    public Admin findById(Integer id){
+    public static Admin findById(Integer id){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Admin admin = session.find(Admin.class, id);
         session.close();
@@ -28,7 +28,7 @@ public class AdminRepository {
     };
 
     //save to database
-    public void save(Admin admin){
+    public static void save(Admin admin){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(admin);
@@ -37,7 +37,7 @@ public class AdminRepository {
     };
 
     //delete from database
-    public void delete(Admin admin){
+    public static void delete(Admin admin){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(admin);
@@ -46,7 +46,7 @@ public class AdminRepository {
     };
 
     //delete from database by admin id
-    public void deleteById(Admin adminId){
+    public static void deleteById(Admin adminId){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(adminId);
@@ -55,7 +55,7 @@ public class AdminRepository {
     }
 
     //update database
-    public void update(Admin admin){
+    public static void update(Admin admin){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(admin);

@@ -10,13 +10,13 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "petType")
+@Table
 @Getter
 @Setter
 public class PetType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int petTypeId;
     String name;
     @OneToMany(mappedBy = "petType", fetch = FetchType.EAGER)

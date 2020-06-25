@@ -10,7 +10,7 @@ import java.util.List;
 public class AppointmentRepository {
 
     //find all appointment
-    public List<Appointment> findAll() {
+    public static List<Appointment> findAll() {
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Appointment> appointments =
                 session.createQuery("select appointment from Appointment appointment", Appointment.class)
@@ -20,7 +20,7 @@ public class AppointmentRepository {
     }
 
     //find vet by appointment id
-    public Appointment findById(Integer id){
+    public static Appointment findById(Integer id){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Appointment appointment = session.find(Appointment.class, id);
         session.close();
@@ -28,7 +28,7 @@ public class AppointmentRepository {
     };
 
     //save to database
-    public void save(Appointment appointment){
+    public static void save(Appointment appointment){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(appointment);
@@ -37,7 +37,7 @@ public class AppointmentRepository {
     };
 
     //delete from database
-    public void delete(Appointment appointment){
+    public static void delete(Appointment appointment){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(appointment);
@@ -46,7 +46,7 @@ public class AppointmentRepository {
     };
 
     //delete from database by appointment id
-    public void deleteById(Appointment appointmentId){
+    public static void deleteById(Appointment appointmentId){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(appointmentId);
@@ -55,7 +55,7 @@ public class AppointmentRepository {
     }
 
     //update database
-    public void update(Appointment appointment){
+    public static void update(Appointment appointment){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(appointment);

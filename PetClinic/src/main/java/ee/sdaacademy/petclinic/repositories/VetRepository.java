@@ -10,7 +10,7 @@ import java.util.List;
 public class VetRepository {
 
     //find all vets
-    public List<Vet> findAll() {
+    public static List<Vet> findAll() {
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Vet> vets =
                 session.createQuery("select vet from Vet vet", Vet.class)
@@ -20,7 +20,7 @@ public class VetRepository {
     }
 
     //find vet by vet id
-    public Vet findById(Integer id){
+    public static Vet findById(Integer id){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Vet vet = session.find(Vet.class, id);
         session.close();
@@ -28,7 +28,7 @@ public class VetRepository {
     };
 
     //save to database
-    public void save(Vet vet){
+    public static void save(Vet vet){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(vet);
@@ -37,7 +37,7 @@ public class VetRepository {
     };
 
     //delete from database
-    public void delete(Vet vet){
+    public static void delete(Vet vet){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(vet);
@@ -46,7 +46,7 @@ public class VetRepository {
     };
 
     //delete from database by vet id
-    public void deleteById(Vet vetId){
+    public static void deleteById(Vet vetId){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(vetId);
@@ -55,7 +55,7 @@ public class VetRepository {
     }
 
     //update database
-    public void update(Vet vet){
+    public static void update(Vet vet){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(vet);

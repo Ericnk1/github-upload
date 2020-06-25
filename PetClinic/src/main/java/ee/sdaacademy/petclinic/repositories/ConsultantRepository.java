@@ -10,23 +10,26 @@ import java.util.List;
 public class ConsultantRepository {
 
     //find all consultants
-    public List<Consultant> findAll(){
+    public static List<Consultant> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        List<Consultant> consultants = session.createQuery("select consultant from Consultant consultant ", Consultant.class).getResultList();
+        List<Consultant> consultants = session.createQuery("select consultant from Consultant consultant ",
+                Consultant.class).getResultList();
         session.close();
         return consultants;
     }
 
     //find consultant by consultant alphabetically
-    public List <Consultant> findAllAlphabetically() {
+    public static List <Consultant> findAllAlphabetically() {
         Session session = HibernateUtils.getSessionFactory().openSession();
-        List<Consultant> consultant = session.createQuery("select consultant from Consultant consultant order by consultant.firstName", Consultant.class)
+        List<Consultant> consultant = session.createQuery("select consultant" +
+                " from Consultant consultant order by Name", Consultant.class)
                 .getResultList();
+        session.close();
         return consultant;
     };
 
     //find consultants by id
-    public Consultant findById(Integer id){
+    public static Consultant findById(Integer id){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Consultant consultant = session.find(Consultant.class, id);
         session.close();
@@ -34,7 +37,7 @@ public class ConsultantRepository {
     };
 
     //save to database
-    public void save(Consultant consultant){
+    public static void save(Consultant consultant){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(consultant);
@@ -43,7 +46,7 @@ public class ConsultantRepository {
     };
 
     //delete from database
-    public void delete(Consultant consultant){
+    public static void delete(Consultant consultant){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(consultant);
@@ -52,7 +55,7 @@ public class ConsultantRepository {
     };
 
     //delete from database by consultants id
-    public void deleteById(Consultant consultantId){
+    public static void deleteById(Consultant consultantId){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(consultantId);
@@ -61,7 +64,7 @@ public class ConsultantRepository {
     };
 
     //update database
-    public void update(Consultant consultant){
+    public static void update(Consultant consultant){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(consultant);

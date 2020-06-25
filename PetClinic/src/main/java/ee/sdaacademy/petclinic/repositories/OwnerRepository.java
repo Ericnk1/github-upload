@@ -10,7 +10,7 @@ import java.util.List;
 public class OwnerRepository {
 
     //find all Owners
-    public List<Owner> findAll(){
+    public static List<Owner> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Owner> owner = session.createQuery("select owner from Owner owner ", Owner.class).getResultList();
         session.close();
@@ -18,7 +18,7 @@ public class OwnerRepository {
     }
 
     //find Owner by Owner alphabetically
-    public List <Owner> findAllAlphabetically() {
+    public static List <Owner> findAllAlphabetically() {
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Owner> owner = session.createQuery("select owner from Owner owner order by owner.firstName", Owner.class)
                 .getResultList();
@@ -26,7 +26,7 @@ public class OwnerRepository {
     };
 
     //find Owners by id
-    public Owner findById(Integer id){
+    public static Owner findById(Integer id){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Owner owner = session.find(Owner.class, id);
         session.close();
@@ -34,7 +34,7 @@ public class OwnerRepository {
     };
 
     //save to database
-    public void save(Owner owner){
+    public static void save(Owner owner){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(owner);
@@ -43,7 +43,7 @@ public class OwnerRepository {
     };
 
     //delete from database
-    public void delete(Owner owner){
+    public static void delete(Owner owner){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(owner);
@@ -52,7 +52,7 @@ public class OwnerRepository {
     };
 
     //delete from database by Owners id
-    public void deleteById(Owner ownerId){
+    public static void deleteById(Owner ownerId){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(ownerId);
@@ -61,7 +61,7 @@ public class OwnerRepository {
     };
 
     //update database
-    public void update(Owner owner){
+    public static void update(Owner owner){
         Session session = HibernateUtils.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(owner);
