@@ -5,6 +5,10 @@ import ee.sdaacademy.petclinic.models.Vet;
 import ee.sdaacademy.petclinic.repositories.AdminRepository;
 import ee.sdaacademy.petclinic.repositories.VetRepository;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class VetUsers {
@@ -36,6 +40,17 @@ public class VetUsers {
                 System.out.println("Enter vet last name: ");
                 String lastName = sc.next();
                 vet1.setLastName(lastName);
+                System.out.println("Enter date of birth as yyyy-MM-dd:");
+                String date = sc.next();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateOfBirth=null;
+                try {
+                    //Parsing the String
+                    dateOfBirth= dateFormat.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                vet1.setDateOfBirth(dateOfBirth);
                 System.out.println("Enter the address: ");
                 sc.nextLine(); //Read empty line
                 String address1 = sc.nextLine();
@@ -79,6 +94,17 @@ public class VetUsers {
                 System.out.println("Enter the last name: ");
                 String lastName5 = sc.nextLine();
                 vet4.setLastName(lastName5);
+                System.out.println("Enter date of birth as yyyy-MM-dd:");
+                String date4 = sc.next();
+                DateFormat dateFormat4 = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateOfBirth4=null;
+                try {
+                    //Parsing the String
+                    dateOfBirth4 = dateFormat4.parse(date4);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                vet4.setDateOfBirth(dateOfBirth4);
                 System.out.println("Enter the address: ");
                 String address4 = sc.nextLine();
                 sc.nextLine(); //Read empty line

@@ -21,6 +21,6 @@ public class Consultant {
     @OneToMany(mappedBy = "consultant", fetch = FetchType.EAGER)
     List<Appointment> appointmentList;
 
-    @OneToMany(mappedBy = "consultant")
+    @OneToMany(mappedBy = "consultant", cascade = CascadeType.ALL)
     List<Pet> petList;
 }

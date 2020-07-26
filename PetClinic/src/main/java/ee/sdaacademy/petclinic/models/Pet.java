@@ -17,21 +17,21 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer petId;
     String name;
-    LocalDate dateOfBirth;
-    @ManyToOne
+    Date dateOfBirth;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "petTypeId")
     PetType petType;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ownerId")
     Owner owner;
     int isVaccinated;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "vetId")
     Vet vet;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "consultantId")
     Consultant consultant;
-    @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     //@JoinColumn(name = "appointmentId")
     List<Appointment> appointmentList;
 }

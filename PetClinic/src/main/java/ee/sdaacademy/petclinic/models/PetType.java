@@ -19,7 +19,7 @@ public class PetType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int petTypeId;
     String name;
-    @OneToMany(mappedBy = "petType", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "petType", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     //@JoinColumn(name = "petId")
     List<Pet> petList;
 }

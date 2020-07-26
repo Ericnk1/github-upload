@@ -6,8 +6,12 @@ import ee.sdaacademy.petclinic.models.Pet;
 import ee.sdaacademy.petclinic.repositories.AppointmentRepository;
 
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.TimeZone;
@@ -34,20 +38,26 @@ public class AppointmentUsers {
                 return;
             case 1:
                 System.out.println("Enter the description: ");
-                String description1 = sc.next();
+                sc.nextLine(); //Read empty line
+                String description1 = sc.nextLine();
                 appointment1.setDescription(description1);
-                sc.nextLine(); //Read empty line
-                /*System.out.println("Enter the date of birth as 'yyyy-mm-dd': ");
-                String date1 = sc.nextLine();
-                //Date date = Date.parse(date1);
-                //Date dateOfBirth = format.parse(date);
-                Date date = Date.from(Instant.parse(date1));
-                appointment1.setDate(date);
-                System.out.println("Enter the time");
-                String time1 = sc.next();
-                Time time = Time.valueOf(time1);
-                appointment1.setTime(time);*/
-                sc.nextLine(); //Read empty line
+                //sc.nextLine(); //Read empty line
+                System.out.println("Enter date as yyyy-MM-dd:");
+                String date = sc.nextLine();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date1=null;
+                try {
+                    //Parsing the String
+                    date1 = dateFormat.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                appointment1.setDate(date1);
+                System.out.println("Enter the time as hh-mm-ss:");
+                String time = sc.nextLine();
+                LocalTime setTime = LocalTime.parse(time);
+                appointment1.setTime(setTime);
+                //sc.nextLine(); //Read empty line
                 System.out.println("Enter the consultant Id: ");
                 int consultantId1 = sc.nextInt();
                 Consultant consultant1 = new Consultant();
@@ -86,22 +96,28 @@ public class AppointmentUsers {
                         + AppointmentRepository.findById(appointmentId4).getDate() + " " + AppointmentRepository.findById(appointmentId4).getTime()
                 + " " + AppointmentRepository.findById(appointmentId4).getPet().getPetId());
                 Appointment appointment4 = AppointmentRepository.findById(appointmentId4);
-                sc.nextLine(); //Read empty line
                 System.out.println("Enter the description: ");
-                String description5 = sc.next();
+                sc.nextLine(); //Read empty line
+                String description5 = sc.nextLine();
                 appointment4.setDescription(description5);
-                sc.nextLine(); //Read empty line
-                /*System.out.println("Enter the date of birth as 'yyyy-mm-dd': ");
+                //sc.nextLine(); //Read empty line
+                System.out.println("Enter date as yyyy-MM-dd:");
                 String date4 = sc.nextLine();
-                //Date date = Date.parse(date1);
-                //Date dateOfBirth = format.parse(date);
-                Date date2 = Date.from(Instant.parse(date4));
-                appointment4.setDate(date2);
-                System.out.println("Enter the time");
-                String time4 = sc.next();
-                Time time2 = Time.valueOf(time4);
-                appointment4.setTime(time2);*/
-                sc.nextLine(); //Read empty line
+                DateFormat dateFormat4 = new SimpleDateFormat("yyyy-MM-dd");
+                Date date04=null;
+                try {
+                    //Parsing the String
+                    date04= dateFormat4.parse(date4);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                appointment4.setDate(date04);
+                System.out.println("Enter the time as hh-mm-ss:");
+                //sc.next(); //Read empty line
+                String time4 = sc.nextLine();
+                LocalTime setTime4 = LocalTime.parse(time4);
+                appointment1.setTime(setTime4);
+                //sc.next(); //Read empty line
                 System.out.println("Enter the consultant Id: ");
                 int consultantId4 = sc.nextInt();
                 Consultant consultant4 = new Consultant();

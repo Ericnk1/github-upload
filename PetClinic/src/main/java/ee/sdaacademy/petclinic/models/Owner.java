@@ -23,6 +23,6 @@ public class Owner {
     String address;
     String telephoneNumber;
     String email;
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Pet> petList;
 }

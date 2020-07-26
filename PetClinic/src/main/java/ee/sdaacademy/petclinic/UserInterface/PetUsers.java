@@ -2,9 +2,14 @@ package ee.sdaacademy.petclinic.UserInterface;
 
 import ee.sdaacademy.petclinic.models.*;
 import ee.sdaacademy.petclinic.repositories.PetRepository;
+import ee.sdaacademy.petclinic.repositories.PetTypeRepository;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
 
 public class PetUsers {
@@ -33,17 +38,24 @@ public class PetUsers {
                     return;
                 case 1:
                     System.out.println("Enter pet name: ");
-                    String Name = sc.next();
+                    sc.nextLine(); //Read empty line
+                    String Name = sc.nextLine();
                     pet.setName(Name);
-                    /*System.out.println("Enter date of birth as 'yyyy-mm-dd': ");
-                    String dateOfBirth = sc.nextLine();
-                    LocalDate localDate = LocalDate.parse(dateOfBirth);
-                    //Date dateOfBirth = format.parse(date);
-                    //Date dateOfBirth = Date.from(Instant.parse(sc.next()));
-                    pet.setDateOfBirth(localDate);*/
+                    System.out.println("Enter date of birth as yyyy-MM-dd:");
+                    String date = sc.nextLine();
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    Date dateOfBirth=null;
+                    try {
+                        //Parsing the String
+                        dateOfBirth = dateFormat.parse(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    pet.setDateOfBirth(dateOfBirth);
                     System.out.println("Enter petTypeId: ");
                     int petTypeId = sc.nextInt();
-                    pet.setPetId(petTypeId);
+                    PetType petType1 = PetTypeRepository.findById(petTypeId);
+                    pet.setPetType(petType1);
                     System.out.println("Enter owner Id: ");
                     //sc.nextLine(); //Read empty line
                     int ownerId = sc.nextInt();
@@ -92,19 +104,28 @@ public class PetUsers {
                     PetRepository.findById(petId5);
                     System.out.println(PetRepository.findById(petId5).getName());
                     Pet pet5 = PetRepository.findById(petId5);
+                    sc.nextLine(); //Read empty line
                     System.out.println("Enter the name: ");
+                    sc.nextLine(); //Read empty line
                     String name5 = sc.nextLine();
                     pet5.setName(name5);
-                    /*System.out.println("Enter date of birth as 'dd-mm-yyyy': ");
-
-                    String dateOfBirth5 = sc.nextLine();
-                    LocalDate localDate1 = LocalDate.parse(dateOfBirth5);
-                    //Date dateOfBirth = format.parse(date);
-                    //Date dateOfBirth = Date.from(Instant.parse(sc.next()));
-                    pet.setDateOfBirth(localDate1);*/
+                    System.out.println("Enter date of birth as yyyy-MM-dd:");
+                    String date5 = sc.nextLine();
+                    DateFormat dateFormat5 = new SimpleDateFormat("yyyy-MM-dd");
+                    Date dateOfBirth5=null;
+                    try {
+                        //Parsing the String
+                        dateOfBirth5 = dateFormat5.parse(date5);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    pet.setDateOfBirth(dateOfBirth5);
+                    //sc.nextLine(); //Read empty line
                     System.out.println("Enter petTypeId: ");
                     int petTypeId5 = sc.nextInt();
-                    pet.setPetId(petTypeId5);
+                    //sc.nextLine(); //Read empty line
+                    PetType petType5 = PetTypeRepository.findById(petTypeId5);
+                    pet.setPetType(petType5);
                     System.out.println("Enter owner Id: ");
                     //sc.nextLine(); //Read empty line
                     int ownerId5 = sc.nextInt();
@@ -124,7 +145,8 @@ public class PetUsers {
                     Consultant consultant5 = new Consultant();
                     consultant5.setConsultantId(consultantId5);
                     pet.setConsultant(consultant5);
-                    PetRepository.save(pet);
+                    PetRepository.update(pet);
+                    //sc.nextLine(); //Read empty line
                     break;
                 case 6:
                     PetRepository.findAllAlphabetically().forEach(pet6 -> {

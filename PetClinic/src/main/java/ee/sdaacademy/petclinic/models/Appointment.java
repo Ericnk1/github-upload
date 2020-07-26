@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,11 +21,11 @@ public class Appointment {
     Integer appointmentId;
     String description;
     Date date; //date of consultation
-    Time time;
+    LocalTime time;
     @ManyToOne
     @JoinColumn(name = "consultantId")
     Consultant consultant;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "petId")
     Pet pet;
 }

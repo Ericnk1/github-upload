@@ -24,6 +24,6 @@ public class Vet {
     String telephoneNumber;
     String email;
 
-    @OneToMany(mappedBy = "vet")
+    @OneToMany(mappedBy = "vet", cascade = CascadeType.ALL)
     List<Pet> petList;
 }
